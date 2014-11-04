@@ -1,20 +1,20 @@
 package sample.controller;
 
-
 import sample.model.Crossing;
-import sample.model.TrafficLight;
-
+import sample.model.trafficLights.TrafficLight;
 import java.util.List;
 
 public abstract class CrossingController {
 
 	private List<List<TrafficLight>> queueOfLightingLights;
-	private Crossing controlledCrossing;
+	protected Crossing controlledCrossing;
 
 	public CrossingController(){}
-	public List<List<TrafficLight>> makeQueue(){
-		return null;
-	}
 	public void playCrossing(){}
 	public void useDetector(){}
+    public abstract void makeQueue();
+    public abstract void setConflictedLightsToAllLights();
+
+
+
 }

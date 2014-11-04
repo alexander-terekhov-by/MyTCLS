@@ -1,13 +1,14 @@
 package sample.model;
 
-/**
- * @author ���������
- * @version 1.0
- * @created 03-���-2014 20:56:23
- */
-public interface Crossing {
+import sample.model.road.Line;
+import sample.model.road.Road;
+
+import java.util.List;
 
 
-	public void addLine(Line line);
-
+public class Crossing {
+    private List<Crossing> neighbourCrossings;
+    private List<Road> roads;
+	public void addLine(Line line){}
+    public List<Road> getAllRoads(){return null;}
 }
