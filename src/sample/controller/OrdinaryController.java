@@ -26,6 +26,4 @@ public class OrdinaryController extends CrossingController {
                         }
     }
     public void playCrossing(){}
-
-
 }
