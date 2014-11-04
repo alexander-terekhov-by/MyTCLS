@@ -25,5 +25,7 @@ public class OrdinaryController extends CrossingController {
                             line.addConflictLight(anotherLine.getTrafficLight());
                         }
     }
-    public void playCrossing(){}
+    public void playCrossing(){
+
+    }
 }
