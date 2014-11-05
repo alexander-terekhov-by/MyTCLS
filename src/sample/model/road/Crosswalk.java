@@ -7,8 +7,9 @@ public class Crosswalk {
 	private PedLight pedLight;
 
 	public Crosswalk(){
-
+        pedLight = new PedLight();
 	}
-
-
+    public PedLight getPedLight() {
+        return pedLight;
+    }
 }
