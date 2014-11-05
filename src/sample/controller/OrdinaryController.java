@@ -21,7 +21,9 @@ public class OrdinaryController extends CrossingController {
 
     @Override
     public void setConflictedLightsToAllLights() {
+        //System.out.println(controlledCrossing.toString());
         for(Road oneRoad: controlledCrossing.getAllRoads()) {
+
             for (Road anotherRoad : controlledCrossing.getAllRoads()) {
                 if (!oneRoad.isOppositeRoad(anotherRoad) && oneRoad.getOrientation() != anotherRoad.getOrientation()) {
                     for (Line line : oneRoad.getLines()) {
@@ -32,6 +34,7 @@ public class OrdinaryController extends CrossingController {
                 }
                 else {
                     for (Line line : oneRoad.getLines()) {
+                        if(anotherRoad.haveCrosswalk())
                             line.addConflictLight(anotherRoad.getCrosswalk().getPedLight());
                     }
                 }

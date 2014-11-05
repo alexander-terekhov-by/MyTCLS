@@ -47,12 +47,11 @@ public class Road {
     public void addCrosswalk(){
         crosswalk = new Crosswalk();
     }
-
     @Override
     public String toString() {
         String roadStr = "Road (" + orientation + ")";
         if(haveCrosswalk()){
-            roadStr += "with crosswalk";
+            roadStr += " with crosswalk";
         }
         roadStr += " {\n" ;
         for(Line oneLine : lines) {
@@ -61,4 +60,5 @@ public class Road {
         roadStr += "}";
         return roadStr;
     }
+
 }

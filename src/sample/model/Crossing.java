@@ -19,6 +19,13 @@ public class Crossing {
     }
 
 
+    public void addNewCrosswalk(RoadOrientation orientation){
+        for(Road oneRoad : roads) {
+            if (oneRoad.getOrientation() == orientation) {
+                oneRoad.addCrosswalk();
+            }
+        }
+    }
     public void addNewLine(LineDirection direction, RoadOrientation orientation){
         for(Road oneRoad : roads) {
             if (oneRoad.getOrientation() == orientation) {
@@ -26,17 +33,16 @@ public class Crossing {
             }
         }
     }
-
-    public void addRoad(Road road){
+    public void addNewRoad(RoadOrientation orientation){
         for (Road crossingRoad : roads) {
-            if (crossingRoad.getOrientation() == road.getOrientation()) {
+            if (crossingRoad.getOrientation() == orientation) {
                 System.out.println("Дублирование дороги");
                 return;
             }
         }
-        roads.add(road);
+        roads.add(new Road(orientation));
     }
-    public List<Road> getAllRoads(){return null;}
+    public List<Road> getAllRoads(){return roads;}
 
     @Override
     public String toString() {

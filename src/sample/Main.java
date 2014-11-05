@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import sample.controller.CrossingController;
+import sample.controller.OrdinaryController;
 import sample.model.Crossing;
 import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
 import sample.model.road.Line;
+import sample.model.road.Road;
 
 public class Main extends Application {
 
@@ -25,7 +28,17 @@ public class Main extends Application {
     public static void main(String[] args) {
         Crossing testCr = new Crossing();
         testCr.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.NORTH);
-        System.out.println(testCr);
+        //testCr.addNewRoad(RoadOrientation.NORTH);
+        testCr.addNewRoad(RoadOrientation.WEST);
+        testCr.addNewCrosswalk(RoadOrientation.WEST);
+        CrossingController controllerTest = new OrdinaryController(testCr);
+        controllerTest.setConflictedLightsToAllLights();
+        /*for(Road road : testCr.getAllRoads())
+            for(Line line : road.getLines())
+            line.printConflict();*/
+
+
+        //System.out.println(testCr);
 
 
         //launch(args);

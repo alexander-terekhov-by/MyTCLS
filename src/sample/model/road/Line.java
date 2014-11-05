@@ -35,6 +35,11 @@ public class Line {
 
     @Override
     public String toString() {
+        //printConflict();
         return "Line: Direction:" + direction + ", Road orientation:" + orientation;
+    }
+    public void printConflict(){
+        System.out.println(toString());
+        trafficLight.printConflicts();
     }
 }
