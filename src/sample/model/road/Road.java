@@ -48,6 +48,17 @@ public class Road {
         crosswalk = new Crosswalk();
     }
 
-
-
+    @Override
+    public String toString() {
+        String roadStr = "Road (" + orientation + ")";
+        if(haveCrosswalk()){
+            roadStr += "with crosswalk";
+        }
+        roadStr += " {\n" ;
+        for(Line oneLine : lines) {
+            roadStr += "\t" + oneLine.toString() + "\n";
+        }
+        roadStr += "}";
+        return roadStr;
+    }
 }

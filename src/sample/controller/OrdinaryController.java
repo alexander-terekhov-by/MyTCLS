@@ -12,7 +12,9 @@ import java.util.List;
 
 public class OrdinaryController extends CrossingController {
 
-	public OrdinaryController(){}
+	public OrdinaryController(Crossing controlledCrossing){
+        super(controlledCrossing);
+    }
 	public void makeQueue(){
 
 	}

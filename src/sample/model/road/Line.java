@@ -22,9 +22,9 @@ public class Line {
         trafficLight = new DriverLight();
     }
 
-    public Line(){
+    /*public Line(){
 
-	}
+	}*/
 
 	public void addConflictLight(TrafficLight light){
 		trafficLight.addConflictLight(light);
@@ -33,5 +33,8 @@ public class Line {
         return trafficLight;
     }
 
-
+    @Override
+    public String toString() {
+        return "Line: Direction:" + direction + ", Road orientation:" + orientation;
+    }
 }

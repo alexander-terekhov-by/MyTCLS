@@ -6,6 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import sample.model.Crossing;
+import sample.model.enums.LineDirection;
+import sample.model.enums.RoadOrientation;
+import sample.model.road.Line;
 
 public class Main extends Application {
 
@@ -19,6 +23,11 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        Crossing testCr = new Crossing();
+        testCr.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.NORTH);
+        System.out.println(testCr);
+
+
+        //launch(args);
     }
 }

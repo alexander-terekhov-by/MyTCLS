@@ -1,5 +1,6 @@
 package sample.controller;
 
+import sample.model.Crossing;
 import sample.model.trafficLights.TrafficLight;
 
 import java.util.List;
@@ -7,8 +8,9 @@ import java.util.List;
 
 public class SafeController extends CrossingController {
 
-	public SafeController(){
-	}
+	public SafeController(Crossing controlledCrossing){
+        super(controlledCrossing);
+    }
 
 
 	public void makeQueue(){

@@ -9,7 +9,9 @@ public abstract class CrossingController {
 	private List<List<TrafficLight>> queueOfLightingLights;
 	protected Crossing controlledCrossing;
 
-	public CrossingController(){}
+	public CrossingController(Crossing crossing){
+        controlledCrossing = crossing;
+    }
 	public void playCrossing(){}
 	public void useDetector(){}
     public abstract void makeQueue();
