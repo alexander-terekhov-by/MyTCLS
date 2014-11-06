@@ -7,23 +7,27 @@ import sample.model.road.Road;
 import sample.model.trafficLights.TrafficLight;
 
 import java.io.OutputStreamWriter;
-import java.util.List;
+import java.util.*;
 
 
 public class OrdinaryController extends CrossingController {
+    private GroupOfNonconflictedLights firstGroupOfLights;
+    private GroupOfNonconflictedLights secondGroupOfLights;
+
 
 	public OrdinaryController(Crossing controlledCrossing){
         super(controlledCrossing);
-    }
-	public void makeQueue(){
+        firstGroupOfLights = new GroupOfNonconflictedLights();
+        secondGroupOfLights = new GroupOfNonconflictedLights();
 
-	}
+    }
+
+
 
     @Override
     public void setConflictedLightsToAllLights() {
         //System.out.println(controlledCrossing.toString());
         for(Road oneRoad: controlledCrossing.getAllRoads()) {
-
             for (Road anotherRoad : controlledCrossing.getAllRoads()) {
                 if (!oneRoad.isOppositeRoad(anotherRoad) && oneRoad.getOrientation() != anotherRoad.getOrientation()) {
                     for (Line line : oneRoad.getLines()) {
@@ -41,6 +45,40 @@ public class OrdinaryController extends CrossingController {
             }
         }
     }
-    public void playCrossing(){
+    public void makeGroupOfLights(){
+        Road basicRoad = controlledCrossing.getAllRoads().get(0);
+        Line basicLine = basicRoad.getLines().get(0);
+        TrafficLight basicLight = basicLine.getTrafficLight();
+        firstGroupOfLights.addLight(basicLight);
+        for(Road oneRoad: controlledCrossing.getAllRoads()) {
+                if (!oneRoad.isOppositeRoad(basicRoad) && oneRoad.getOrientation() != basicRoad.getOrientation()) {
+                    for (Line line : oneRoad.getLines()) {
+                        secondGroupOfLights.addLight(line.getTrafficLight());
+                        if(oneRoad.haveCrosswalk()) {
+                            firstGroupOfLights.addLight(oneRoad.getCrosswalk().getPedLight());
+                        }
+                    }
+                }
+                else {
+                    for (Line line : oneRoad.getLines()) {
+                        firstGroupOfLights.addLight(line.getTrafficLight());
+                        if(oneRoad.haveCrosswalk()) {
+                            secondGroupOfLights.addLight(oneRoad.getCrosswalk().getPedLight());
+                        }
+                    }
+                }
+        }
+
     }
+
+
+    public void playCrossing(){
+        firstGroupOfLights.lightGreen();
+        secondGroupOfLights.lightRed();
+
+
+        firstGroupOfLights.lightRed();
+        secondGroupOfLights.lightGreen();
+    }
+
 }

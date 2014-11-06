@@ -19,7 +19,12 @@ public abstract class TrafficLight {
     }
 
 
-	public void light(){}
+	public void lightGreen(){
+        System.out.println("Green");
+    }
+    public void lightRed(){
+        System.out.println("Red");
+    }
 	public void setGreenTime(int time){
         timeForGreen = time;
 

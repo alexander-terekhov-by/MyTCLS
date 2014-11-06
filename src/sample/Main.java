@@ -32,7 +32,8 @@ public class Main extends Application {
         testCr.addNewRoad(RoadOrientation.WEST);
         testCr.addNewCrosswalk(RoadOrientation.WEST);
         CrossingController controllerTest = new OrdinaryController(testCr);
-        controllerTest.setConflictedLightsToAllLights();
+        controllerTest.makeGroupOfLights();
+        System.out.println(controllerTest.toString());
         /*for(Road road : testCr.getAllRoads())
             for(Line line : road.getLines())
             line.printConflict();*/

@@ -6,17 +6,19 @@ import java.util.List;
 
 public abstract class CrossingController {
 
-	private List<List<TrafficLight>> queueOfLightingLights;
+
 	protected Crossing controlledCrossing;
+    protected int sessionTime;
 
 	public CrossingController(Crossing crossing){
         controlledCrossing = crossing;
+        sessionTime = 10;
     }
 	public void playCrossing(){}
 	public void useDetector(){}
-    public abstract void makeQueue();
+    public abstract void makeGroupOfLights();
     public abstract void setConflictedLightsToAllLights();
-
-
-
+    public void setSessionTime(int sessionTime) {
+        this.sessionTime = sessionTime;
+    }
 }

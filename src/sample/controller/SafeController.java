@@ -30,5 +30,10 @@ public class SafeController extends CrossingController {
 
 	}
 
+    @Override
+    public void makeGroupOfLights() {
+
+    }
+
 
 }
