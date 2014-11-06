@@ -34,6 +34,7 @@ public class Main extends Application {
         CrossingController controllerTest = new OrdinaryController(testCr);
         controllerTest.makeGroupOfLights();
         System.out.println(controllerTest.toString());
+        controllerTest.playCrossing();
         /*for(Road road : testCr.getAllRoads())
             for(Line line : road.getLines())
             line.printConflict();*/
