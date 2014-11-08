@@ -1,7 +1,5 @@
 package sample.view;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -9,21 +7,21 @@ import javafx.scene.layout.HBox;
 /**
  * Created by Александр on 08.11.2014.
  */
-public class DrawerTrafficLightView extends HBox{
+public class DriverLightView extends HBox{
     ImageView light;
     Image redLight;
     Image greenLight;
     Image redAndYellowLight;
     Image yellowLight;
-    DrawerTrafficLightView(){
-        light = new ImageView();
-        this.getChildren().add(light);
-        String resourceFolder =  DrawerTrafficLightView.class.getResource("../../img/small").toString();
+    public DriverLightView(){
+
+        String resourceFolder =  DriverLightView.class.getResource("../../img/small").toString();
         redLight = new Image(resourceFolder + "/red.png");
         greenLight = new Image(resourceFolder + "/green.png");
         redAndYellowLight = new Image(resourceFolder + "/red_yellow.png");
         yellowLight  = new Image(resourceFolder + "/yellow.png");
-
+        light = new ImageView(redLight);
+        this.getChildren().add(light);
     }
 
     public void lightGreen(){

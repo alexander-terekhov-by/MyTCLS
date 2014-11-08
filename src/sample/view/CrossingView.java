@@ -7,11 +7,12 @@ import javafx.scene.layout.Pane;
  * Created by Александр on 07.11.2014.
  */
 public class CrossingView extends Pane {
-    public Canvas canvas;
+    private Canvas canvas;
 
 
     public CrossingView() {
         canvas = new Canvas(600, 600);
+
         this.getChildren().add(canvas);
 
     }

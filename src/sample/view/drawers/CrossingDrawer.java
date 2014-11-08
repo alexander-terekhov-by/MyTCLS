@@ -16,6 +16,8 @@ public class CrossingDrawer {
 
     public CrossingDrawer(Canvas canvas) {
         gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.LIGHTGREEN);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         roadDrawer = new RoadDrawer(canvas);
     }
 
@@ -28,7 +30,7 @@ public class CrossingDrawer {
         gc.setFill(Color.GRAY);
         int firstPos = 190;
         gc.fillRect(firstPos, firstPos, w, h);
-        System.out.println(w + "x"+ h);
+        //System.out.println(w + "x"+ h);
         for (Road road : crossing.getAllRoads()) {
             if (road.getOrientation() == RoadOrientation.NORTH || road.getOrientation() == RoadOrientation.WEST) {
                 roadDrawer.drawRoad(road, firstPos, firstPos);

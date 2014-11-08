@@ -20,7 +20,6 @@ public class RoadDrawer {
         gc = canvas.getGraphicsContext2D();
         lineDrawer = new LineDrawer(canvas);
     }
-
     public void drawRoad(Road road, int firstX, int firstY) {
         switch (road.getOrientation()) {
             case NORTH:
@@ -36,7 +35,6 @@ public class RoadDrawer {
 
         //gc.strokeLine(,,,);
     }
-
     private void drawVerticalLines(Road road, int firstX, int firstY){
         int nextX = firstX;
         //System.out.println("x= " + nextX);
@@ -50,7 +48,7 @@ public class RoadDrawer {
                 if (road.getOrientation() == RoadOrientation.SOUTH)
                     gc.fillRect(i, firstY + DrawingConstants.ZEBRA_ALIGN, DrawingConstants.ZEBRA_WIDTH, DrawingConstants.ZEBRA_HEIGHT);
                 else
-                    gc.fillRect(i, firstY - DrawingConstants.ZEBRA_ALIGN - DrawingConstants.ZEBRA_WIDTH,  DrawingConstants.ZEBRA_WIDTH, DrawingConstants.ZEBRA_HEIGHT);
+                    gc.fillRect(i, firstY - DrawingConstants.ZEBRA_ALIGN - DrawingConstants.ZEBRA_HEIGHT,  DrawingConstants.ZEBRA_WIDTH, DrawingConstants.ZEBRA_HEIGHT);
 
             }
         }

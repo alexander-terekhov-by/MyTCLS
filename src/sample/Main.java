@@ -1,11 +1,10 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -14,44 +13,42 @@ import sample.controller.OrdinaryController;
 import sample.model.Crossing;
 import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
-import sample.model.road.Line;
-import sample.model.road.Road;
 import sample.view.CrossingView;
+import sample.view.DriverLightView;
 import sample.view.drawers.CrossingDrawer;
-import sample.view.drawers.DrawingConstants;
-import sample.view.drawers.LineDrawer;
+
+import javax.swing.border.Border;
 
 public class Main extends Application {
     CrossingDrawer crDrTest;
-    @Override
-    public void start(Stage primaryStage) throws Exception{
 
-        Pane root = new BorderPane();
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+        BorderPane root = new BorderPane();
         primaryStage.setResizable(false);
-        primaryStage.setTitle("TCLS");CrossingView crTest = new CrossingView();
-        root.getChildren().add(crTest);
-        primaryStage.setScene(new Scene(root, 700, 600));
-        //new  LineDrawer (crTest.canvas).drawLine(null, 2,43);
-        crDrTest = new CrossingDrawer(crTest.canvas);
-        //testDrawingLines(crTest.canvas);
-        testDrawingCrossing();
-        //crDrTest.drawCrossing(new Crossing());
-        primaryStage.show();
-        /*Pane root = new BorderPane();
         primaryStage.setTitle("TCLS");
-        CrossingView viewTest = new CrossingView();
-        new LineDrawer(viewTest).drawLine( 5, 5);
-        GraphicsContext gc = viewTest.getCanvas().getGraphicsContext2D();
-        gc.strokeLine(20,20,56,56);
-        primaryStage.setScene(new Scene(root, 300, 275));
-        root.getChildren().addAll();
-        root.setVisible(true);
-        primaryStage.show();*/
+        CrossingView crTest = new CrossingView();
+        root.getChildren().add(crTest);
+        Button btn = new Button("TCLS");
+        primaryStage.setScene(new Scene(root, 700, 600));
+        crDrTest = new CrossingDrawer(crTest.getCanvas());
+        testDrawingCrossing();
+        final DriverLightView driverLightView = new DriverLightView();
+        root.getChildren().add(driverLightView);
+        root.setCenter(btn);
+        primaryStage.show();
+
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                driverLightView.lightGreen();
+            }
+        });
     }
 
 
     public static void main(String[] args) {
-
 
 
         launch(args);
@@ -59,7 +56,7 @@ public class Main extends Application {
 
     }
 
-    public void testDrawingCrossing(){
+    public void testDrawingCrossing() {
         Crossing testCr = new Crossing();
         testCr.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.NORTH);
         testCr.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.NORTH);
