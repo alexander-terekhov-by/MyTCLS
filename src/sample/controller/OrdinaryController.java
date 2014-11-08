@@ -73,6 +73,7 @@ public class OrdinaryController extends CrossingController {
         Timer timer = new Timer("LOL");
         timer.schedule(new MyTimerTask(6), 1000, 1000);
     }
+
     private class MyTimerTask extends TimerTask {
         private int seconds = 0;
         private int secondsForFirstGroup;
@@ -81,9 +82,7 @@ public class OrdinaryController extends CrossingController {
             this.secondsForFirstGroup = secondsForFirstGroup;
         }
 
-        private MyTimerTask() {
 
-        }
         public void run() {
             seconds++;
             System.out.println(seconds);
@@ -96,7 +95,6 @@ public class OrdinaryController extends CrossingController {
                 firstGroupOfLights.lightRed();
                 secondGroupOfLights.lightGreen();
             }
-
         }
     }
 

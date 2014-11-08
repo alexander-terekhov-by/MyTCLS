@@ -1,5 +1,6 @@
 package sample.model;
 
+import javafx.util.Pair;
 import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
 import sample.model.road.Line;
@@ -42,6 +43,7 @@ public class Crossing {
         }
         roads.add(new Road(orientation));
     }
+
     public List<Road> getAllRoads(){return roads;}
 
     @Override
@@ -50,5 +52,14 @@ public class Crossing {
         for (Road oneRoad : roads)
             crossingStr += oneRoad.toString() + "\n";
         return crossingStr;
+    }
+
+    public int getMaxNumberOfLinesFromOrientation(RoadOrientation orientation){
+        for (Road road: roads) {
+            if (road.getOrientation() == orientation) {
+                return  road.getLines().size();
+            }
+        }
+        return 0;
     }
 }

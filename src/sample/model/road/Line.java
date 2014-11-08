@@ -16,6 +16,8 @@ public class Line {
 	private RoadOrientation orientation;
 	private LineDirection direction;
 
+
+
     public Line( LineDirection  direction, RoadOrientation orientation) {
         this.direction = direction;
         this.orientation = orientation;
@@ -41,5 +43,13 @@ public class Line {
     public void printConflict(){
         System.out.println(toString());
         trafficLight.printConflicts();
+    }
+
+    public RoadOrientation getOrientation() {
+        return orientation;
+    }
+
+    public LineDirection getDirection() {
+        return direction;
     }
 }

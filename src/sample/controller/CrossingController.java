@@ -7,6 +7,7 @@ import java.util.List;
 public abstract class CrossingController {
 
 
+
 	protected Crossing controlledCrossing;
     protected int sessionTime;
 
@@ -20,5 +21,8 @@ public abstract class CrossingController {
     public abstract void setConflictedLightsToAllLights();
     public void setSessionTime(int sessionTime) {
         this.sessionTime = sessionTime;
+    }
+    public void drawCrossing(){
+
     }
 }
