@@ -15,7 +15,7 @@ public abstract class CrossingController {
         controlledCrossing = crossing;
         sessionTime = 10;
     }
-	public void playCrossing(){}
+	public abstract void playCrossing();
 	public void useDetector(){}
     public abstract void makeGroupOfLights();
     public abstract void setConflictedLightsToAllLights();

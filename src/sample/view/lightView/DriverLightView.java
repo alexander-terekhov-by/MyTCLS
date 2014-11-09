@@ -4,17 +4,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Александр on 08.11.2014.
  */
-public class DriverLightView extends HBox{
+public class DriverLightView extends HBox implements LightView{
     ImageView light;
     Image redLight;
     Image greenLight;
     Image redAndYellowLight;
     Image yellowLight;
-    public DriverLightView(){
 
+    public DriverLightView(){
         String resourceFolder =  DriverLightView.class.getResource("../../../img/small").toString();
         redLight = new Image(resourceFolder + "/red.png");
         greenLight = new Image(resourceFolder + "/green.png");

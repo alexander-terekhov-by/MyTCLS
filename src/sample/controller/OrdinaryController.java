@@ -1,10 +1,12 @@
 package sample.controller;
 
+import javafx.application.Platform;
 import sample.model.Crossing;
 import sample.model.road.Line;
 import sample.model.road.Road;
 import sample.model.trafficLights.TrafficLight;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -71,7 +73,10 @@ public class OrdinaryController extends CrossingController {
 
     public void playCrossing() {
         Timer timer = new Timer("LOL");
-        timer.schedule(new MyTimerTask(6), 1000, 1000);
+        System.out.println(firstGroupOfLights.toString());
+        System.out.println(secondGroupOfLights.toString());
+        timer.schedule(new MyTimerTask(2), 1000, 1000);
+
     }
 
     private class MyTimerTask extends TimerTask {
@@ -85,16 +90,25 @@ public class OrdinaryController extends CrossingController {
 
         public void run() {
             seconds++;
-            System.out.println(seconds);
-            if (seconds > 9)
-                this.cancel();
-            if (seconds == 1) {
-                firstGroupOfLights.lightGreen();
-                secondGroupOfLights.lightRed();
-            } else if (seconds == (secondsForFirstGroup + 1)) {
-                firstGroupOfLights.lightRed();
-                secondGroupOfLights.lightGreen();
-            }
+            //System.out.println(seconds);
+            if (seconds > 4)
+              seconds = 0;
+               // this.cancel();
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (seconds == 1) {
+                        firstGroupOfLights.lightGreen();
+                        secondGroupOfLights.lightRed();
+                        System.out.println("1Green");
+                    } else if (seconds == (secondsForFirstGroup + 1)) {
+                        firstGroupOfLights.lightRed();
+                        secondGroupOfLights.lightGreen();
+                        System.out.println("2Green");
+                    }
+                }
+            });
         }
     }
 

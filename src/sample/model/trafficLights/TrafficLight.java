@@ -1,47 +1,50 @@
 package sample.model.trafficLights;
 
 import sample.model.Detector;
+import sample.view.lightView.LightView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class TrafficLight {
+public class TrafficLight {
 
-	private List<TrafficLight> conflictLights;
-	private List<TrafficLight> nonConflictedLights;
-	private int timeForRed;
-	private int timeForGreen;
-	private Detector detector;
+    private List<TrafficLight> conflictLights;
+    List<LightView> views;
+    private Detector detector;
 
-    TrafficLight(){
+
+
+
+    public TrafficLight() {
         conflictLights = new ArrayList<TrafficLight>();
+        views = new ArrayList<LightView>();
     }
 
-
-	public void lightGreen(){
-        System.out.println("Green");
+    public void addView(LightView view) {
+        this.views.add(view);
     }
-    public void lightRed(){
-        System.out.println("Red");
-    }
-	public void setGreenTime(int time){
-        timeForGreen = time;
 
-	}
-	public void setRedTime(int time){
-        timeForRed = time;
-	}
-    public void addConflictLight(TrafficLight light){
-             conflictLights.add(light);
+    public void lightGreen() {
+        for(LightView view : views)
+            view.lightGreen();
+    }
+
+    public void lightRed() {
+        for(LightView view : views)
+            view.lightRed();
+    }
+
+    public void addConflictLight(TrafficLight light) {
+        conflictLights.add(light);
     }
 
     @Override
     public String toString() {
         return super.toString();
     }
-    public void printConflicts(){
-        for(TrafficLight light : conflictLights)
+    public void printConflicts() {
+        for (TrafficLight light : conflictLights)
             System.out.println(light.toString());
     }
 }

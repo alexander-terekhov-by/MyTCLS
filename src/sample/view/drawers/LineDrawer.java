@@ -5,10 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import sample.model.road.Line;
-import sample.model.trafficLights.DriverLight;
 import sample.view.CrossingView;
 import sample.view.lightView.DriverLightView;
-import sample.view.lightView.PedLightView;
 
 /**
  * Created by Александр on 07.11.2014.
@@ -30,22 +28,22 @@ public class LineDrawer {
             case NORTH:
                 drawLine(firstX, firstY - DrawingConstants.LINE_HEIGHT, DrawingConstants.LINE_WIDTH, DrawingConstants.LINE_HEIGHT);
                 markLine(line,firstX + 10, firstY -7 );
-                addTrafficLights(firstX + 25, firstY -47);
+                addTrafficLights(line, firstX + 25, firstY -47);
                 break;
             case SOUTH:
                 drawLine(firstX, firstY, DrawingConstants.LINE_WIDTH, DrawingConstants.LINE_HEIGHT);
                 markLine(line,firstX + 10, firstY + 10 );
-                addTrafficLights(firstX + 25, firstY + 15);
+                addTrafficLights(line, firstX + 25, firstY + 15);
                 break;
             case WEST:
                 drawLine(firstX - DrawingConstants.LINE_HEIGHT, firstY, DrawingConstants.LINE_HEIGHT, DrawingConstants.LINE_WIDTH);
                 markLine(line,firstX - 43, firstY + 15 );
-                addTrafficLights(firstX - 18, firstY + 20);
+                addTrafficLights(line, firstX - 18, firstY + 20);
                 break;
             case EAST:
                 drawLine(firstX, firstY, DrawingConstants.LINE_HEIGHT, DrawingConstants.LINE_WIDTH);
                 markLine(line,firstX + 5, firstY + 15 );
-                addTrafficLights(firstX + 5, firstY + 20);
+                addTrafficLights(line, firstX + 5, firstY + 20);
                 break;
         }
     }
@@ -74,10 +72,11 @@ public class LineDrawer {
 
         }
     }
-    private void addTrafficLights(int x, int y){
-        DriverLightView test = new DriverLightView();
-        crossingView.getChildren().add(test);
-        test.setLayoutX(x);
-        test.setLayoutY(y);
+    private void addTrafficLights(Line line, int x, int y){
+        DriverLightView driverLightView = new DriverLightView();
+        line.getTrafficLight().addView(driverLightView);
+        crossingView.getChildren().add(driverLightView);
+        driverLightView.setLayoutX(x);
+        driverLightView.setLayoutY(y);
     }
 }

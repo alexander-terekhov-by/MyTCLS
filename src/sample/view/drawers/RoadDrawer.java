@@ -57,8 +57,8 @@ public class RoadDrawer {
                     yPosForPedLight = firstY - DrawingConstants.ZEBRA_ALIGN - 17;
                 }
             }
-            addPedLights(firstX - 15,yPosForPedLight + 10);
-            addPedLights(nextX + 5, yPosForPedLight - 10);
+            addPedLights(road, firstX - 15,yPosForPedLight + 10);
+            addPedLights(road, nextX + 5, yPosForPedLight - 10);
         }
     }
     private void drawHorizontalLines(Road road, int firstX, int firstY){
@@ -80,16 +80,17 @@ public class RoadDrawer {
                     gc.fillRect(firstX + DrawingConstants.ZEBRA_ALIGN, i, DrawingConstants.ZEBRA_HEIGHT, DrawingConstants.ZEBRA_WIDTH);
                     xPosForPedLight =  firstX + DrawingConstants.ZEBRA_ALIGN;
                 }
-                addPedLights(xPosForPedLight - 5, firstY - 25);
-                addPedLights(xPosForPedLight + 15, nextY + 5);
+                addPedLights(road, xPosForPedLight - 5, firstY - 25);
+                addPedLights(road, xPosForPedLight + 15, nextY + 5);
             }
         }
     }
-    private void addPedLights(int x, int y){
-        PedLightView test = new PedLightView();
-        crossingView.getChildren().add(test);
-        test.setLayoutX(x);
-        test.setLayoutY(y);
+    private void addPedLights(Road road, int x, int y){
+        PedLightView pedLightView = new PedLightView();
+        road.getCrosswalk().getPedLight().addView(pedLightView);
+        crossingView.getChildren().add(pedLightView);
+        pedLightView.setLayoutX(x);
+        pedLightView.setLayoutY(y);
     }
 }
 

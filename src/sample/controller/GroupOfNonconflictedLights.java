@@ -18,13 +18,21 @@ public class GroupOfNonconflictedLights {
         groupOfLights.add(light);
     }
     public void lightGreen(){
+
         for(TrafficLight light: groupOfLights){
+            System.out.println("Group green light");
             light.lightGreen();
         }
     }
     public void lightRed(){
         for(TrafficLight light: groupOfLights){
+            System.out.println("Group red light");
             light.lightRed();
         }
+    }
+
+    @Override
+    public String toString() {
+        return groupOfLights.toString();
     }
 }

@@ -8,7 +8,7 @@ import sample.model.trafficLights.TrafficLight;
 import java.util.List;
 
 
-public class Line {
+public class Line implements Comparable<Line>{
 
 
 
@@ -51,5 +51,16 @@ public class Line {
 
     public LineDirection getDirection() {
         return direction;
+    }
+
+    @Override
+    public int compareTo(Line l) {
+        if(this.getDirection()== LineDirection.TO_LEFT)
+            return -1;
+        else if (this.getDirection()== LineDirection.TO_RIGHT)
+            return 1;
+        else  if(this.getDirection()== LineDirection.STRAIGHT && l.getDirection() == LineDirection.STRAIGHT)
+            return 0;
+        return 0;
     }
 }

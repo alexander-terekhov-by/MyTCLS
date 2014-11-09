@@ -8,7 +8,7 @@ import sample.view.lightView.DriverLightView;
 /**
  * Created by Александр on 09.11.2014.
  */
-public class PedLightView extends HBox {
+public class PedLightView extends HBox implements LightView {
     ImageView light;
     Image redLight;
     Image greenLight;
@@ -24,7 +24,6 @@ public class PedLightView extends HBox {
     public void lightGreen(){
         light.setImage(greenLight);
     }
-
     public void lightRed(){
         light.setImage(redLight);
     }

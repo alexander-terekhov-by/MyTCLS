@@ -5,6 +5,8 @@ import sample.model.enums.RoadOrientation;
 import sample.model.trafficLights.PedLight;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -22,6 +24,7 @@ public class Road {
 	}
     public void addNewLine(LineDirection direction){
         lines.add(new Line( direction, orientation));
+        Collections.sort(lines);
     }
     public List<Line> getLines() {
         return lines;
@@ -60,5 +63,6 @@ public class Road {
         roadStr += "}";
         return roadStr;
     }
+
 
 }
