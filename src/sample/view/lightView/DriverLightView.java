@@ -24,7 +24,7 @@ public class DriverLightView extends HBox implements LightView{
         redAndYellowLight = new Image(resourceFolder + "/red_yellow.png");
         yellowLight  = new Image(resourceFolder + "/yellow.png");
         light = new ImageView(redLight);
-        this.getChildren().add(light);
+        this.getChildren().add(light);  // test commit
     }
 
     public void lightGreen(){
