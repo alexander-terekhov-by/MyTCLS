@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import sample.model.Crossing;
 import sample.model.enums.RoadOrientation;
 import sample.model.road.Road;
+import sample.view.CrossingView;
 
 /**
  * Created by Александр on 07.11.2014.
@@ -14,11 +15,12 @@ public class CrossingDrawer {
     GraphicsContext gc;
     RoadDrawer roadDrawer;
 
-    public CrossingDrawer(Canvas canvas) {
+    public CrossingDrawer(CrossingView crossingView) {
+        Canvas canvas =  crossingView.getCanvas();
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.LIGHTGREEN);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        roadDrawer = new RoadDrawer(canvas);
+        roadDrawer = new RoadDrawer(crossingView);
     }
 
     public void drawCrossing(Crossing crossing) {

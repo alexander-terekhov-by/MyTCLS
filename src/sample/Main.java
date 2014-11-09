@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sample.controller.CrossingController;
 import sample.controller.OrdinaryController;
@@ -14,10 +13,8 @@ import sample.model.Crossing;
 import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
 import sample.view.CrossingView;
-import sample.view.DriverLightView;
+import sample.view.lightView.DriverLightView;
 import sample.view.drawers.CrossingDrawer;
-
-import javax.swing.border.Border;
 
 public class Main extends Application {
     CrossingDrawer crDrTest;
@@ -30,21 +27,11 @@ public class Main extends Application {
         primaryStage.setTitle("TCLS");
         CrossingView crTest = new CrossingView();
         root.getChildren().add(crTest);
-        Button btn = new Button("TCLS");
         primaryStage.setScene(new Scene(root, 700, 600));
-        crDrTest = new CrossingDrawer(crTest.getCanvas());
+        crDrTest = new CrossingDrawer(crTest);
         testDrawingCrossing();
-        final DriverLightView driverLightView = new DriverLightView();
-        root.getChildren().add(driverLightView);
-        root.setCenter(btn);
         primaryStage.show();
 
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                driverLightView.lightGreen();
-            }
-        });
     }
 
 
