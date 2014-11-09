@@ -1,4 +1,4 @@
-package sample.view.lightView;
+package sample.view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +15,7 @@ public class DriverLightView extends HBox{
     Image yellowLight;
     public DriverLightView(){
 
-        String resourceFolder =  DriverLightView.class.getResource("../../../img/small").toString();
+        String resourceFolder =  DriverLightView.class.getResource("../../img/small").toString();
         redLight = new Image(resourceFolder + "/red.png");
         greenLight = new Image(resourceFolder + "/green.png");
         redAndYellowLight = new Image(resourceFolder + "/red_yellow.png");
@@ -26,15 +26,11 @@ public class DriverLightView extends HBox{
 
     public void lightGreen(){
         light.setImage(redAndYellowLight);
-
-        //add countDownTimer or timer or sleep
         light.setImage(greenLight);
     }
 
     public void lightRed(){
         light.setImage(yellowLight);
-
-        //add countDownTimer or timer or sleep
         light.setImage(redLight);
     }
 }
