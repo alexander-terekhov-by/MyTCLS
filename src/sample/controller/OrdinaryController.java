@@ -6,7 +6,6 @@ import sample.model.road.Line;
 import sample.model.road.Road;
 import sample.model.trafficLights.TrafficLight;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -92,8 +91,8 @@ public class OrdinaryController extends CrossingController {
             seconds++;
             //System.out.println(seconds);
             if (seconds > 4)
-              seconds = 0;
-               // this.cancel();
+                seconds = 0;
+            // this.cancel();
 
             Platform.runLater(new Runnable() {
                 @Override

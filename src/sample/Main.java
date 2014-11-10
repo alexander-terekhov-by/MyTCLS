@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -15,13 +14,9 @@ import sample.controller.OrdinaryController;
 import sample.model.Crossing;
 import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
-import sample.model.trafficLights.DriverLight;
-import sample.model.trafficLights.PedLight;
-import sample.model.trafficLights.TrafficLight;
 import sample.view.CrossingView;
-import sample.view.lightView.DriverLightView;
 import sample.view.drawers.CrossingDrawer;
-import sample.view.lightView.PedLightView;
+import sample.view.lightView.DriverLightView;
 
 public class Main extends Application {
     CrossingDrawer crDrTest;
@@ -43,8 +38,8 @@ public class Main extends Application {
         crDrTest = new CrossingDrawer(crossingView);
         //light = new DriverLightView();
         //light1 = new DriverLightView();
-       // root.setCenter(light);
-       // root.setTop(light1);
+        // root.setCenter(light);
+        // root.setTop(light1);
 
         testDrawingCrossing();
         primaryStage.show();
@@ -65,8 +60,6 @@ public class Main extends Application {
         });
         root.getChildren().add(test1);
         root.setCenter(btn);*/
-
-
 
 
     }
@@ -104,8 +97,9 @@ public class Main extends Application {
 
         System.out.println(testCr);
     }
-    private class ButtonBar extends VBox{
-        ButtonBar(){
+
+    private class ButtonBar extends VBox {
+        ButtonBar() {
             VBox innerBox = new VBox();
             innerBox.setSpacing(5);
             Button playButton = new Button("StartCrossing");
@@ -113,9 +107,8 @@ public class Main extends Application {
             innerBox.getChildren().add(playButton);
 
             //this.setAlignment(Pos.BASELINE_CENTER);
-            this.setMargin(innerBox, new Insets(10,10,10,10));
+            this.setMargin(innerBox, new Insets(10, 10, 10, 10));
             this.getChildren().add(innerBox);
-
 
 
             playButton.setOnAction(new EventHandler<ActionEvent>() {

@@ -1,6 +1,6 @@
 package sample.model.enums;
 
-public enum RoadOrientation{ NORTH,SOUTH,EAST,WEST }
+public enum RoadOrientation {NORTH, SOUTH, EAST, WEST}
 
 
 

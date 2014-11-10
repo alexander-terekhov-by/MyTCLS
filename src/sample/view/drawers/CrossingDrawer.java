@@ -16,7 +16,7 @@ public class CrossingDrawer {
     RoadDrawer roadDrawer;
 
     public CrossingDrawer(CrossingView crossingView) {
-        Canvas canvas =  crossingView.getCanvas();
+        Canvas canvas = crossingView.getCanvas();
         gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.LIGHTGREEN);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());

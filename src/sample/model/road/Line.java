@@ -5,20 +5,16 @@ import sample.model.enums.RoadOrientation;
 import sample.model.trafficLights.DriverLight;
 import sample.model.trafficLights.TrafficLight;
 
-import java.util.List;
 
-
-public class Line implements Comparable<Line>{
-
+public class Line implements Comparable<Line> {
 
 
     private TrafficLight trafficLight;
-	private RoadOrientation orientation;
-	private LineDirection direction;
+    private RoadOrientation orientation;
+    private LineDirection direction;
 
 
-
-    public Line( LineDirection  direction, RoadOrientation orientation) {
+    public Line(LineDirection direction, RoadOrientation orientation) {
         this.direction = direction;
         this.orientation = orientation;
         trafficLight = new DriverLight();
@@ -28,9 +24,10 @@ public class Line implements Comparable<Line>{
 
 	}*/
 
-	public void addConflictLight(TrafficLight light){
-		trafficLight.addConflictLight(light);
-	}
+    public void addConflictLight(TrafficLight light) {
+        trafficLight.addConflictLight(light);
+    }
+
     public TrafficLight getTrafficLight() {
         return trafficLight;
     }
@@ -40,7 +37,8 @@ public class Line implements Comparable<Line>{
         //printConflict();
         return "Line: Direction:" + direction + ", Road orientation:" + orientation;
     }
-    public void printConflict(){
+
+    public void printConflict() {
         System.out.println(toString());
         trafficLight.printConflicts();
     }
@@ -55,11 +53,11 @@ public class Line implements Comparable<Line>{
 
     @Override
     public int compareTo(Line l) {
-        if(this.getDirection()== LineDirection.TO_LEFT)
+        if (this.getDirection() == LineDirection.TO_LEFT)
             return -1;
-        else if (this.getDirection()== LineDirection.TO_RIGHT)
+        else if (this.getDirection() == LineDirection.TO_RIGHT)
             return 1;
-        else  if(this.getDirection()== LineDirection.STRAIGHT && l.getDirection() == LineDirection.STRAIGHT)
+        else if (this.getDirection() == LineDirection.STRAIGHT && l.getDirection() == LineDirection.STRAIGHT)
             return 0;
         return 0;
     }

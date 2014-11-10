@@ -14,24 +14,28 @@ public class TrafficLight {
     private Detector detector;
 
 
-
-
     public TrafficLight() {
         conflictLights = new ArrayList<TrafficLight>();
         views = new ArrayList<LightView>();
+        detector = new Detector();
     }
+
+    public Detector getDetector() {
+        return detector;
+    }
+
 
     public void addView(LightView view) {
         this.views.add(view);
     }
 
     public void lightGreen() {
-        for(LightView view : views)
+        for (LightView view : views)
             view.lightGreen();
     }
 
     public void lightRed() {
-        for(LightView view : views)
+        for (LightView view : views)
             view.lightRed();
     }
 
@@ -43,6 +47,7 @@ public class TrafficLight {
     public String toString() {
         return super.toString();
     }
+
     public void printConflicts() {
         for (TrafficLight light : conflictLights)
             System.out.println(light.toString());

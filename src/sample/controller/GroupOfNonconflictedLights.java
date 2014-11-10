@@ -14,18 +14,21 @@ public class GroupOfNonconflictedLights {
     public GroupOfNonconflictedLights() {
         this.groupOfLights = new HashSet<TrafficLight>();
     }
-    public void addLight(TrafficLight light){
+
+    public void addLight(TrafficLight light) {
         groupOfLights.add(light);
     }
-    public void lightGreen(){
 
-        for(TrafficLight light: groupOfLights){
+    public void lightGreen() {
+
+        for (TrafficLight light : groupOfLights) {
             System.out.println("Group green light");
             light.lightGreen();
         }
     }
-    public void lightRed(){
-        for(TrafficLight light: groupOfLights){
+
+    public void lightRed() {
+        for (TrafficLight light : groupOfLights) {
             System.out.println("Group red light");
             light.lightRed();
         }
