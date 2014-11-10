@@ -12,18 +12,18 @@ import sample.view.CrossingView;
  * Created by Александр on 07.11.2014.
  */
 public class CrossingDrawer {
-    GraphicsContext gc;
+    Canvas canvas;
     RoadDrawer roadDrawer;
 
     public CrossingDrawer(CrossingView crossingView) {
-        Canvas canvas = crossingView.getCanvas();
-        gc = canvas.getGraphicsContext2D();
-        gc.setFill(Color.LIGHTGREEN);
-        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        canvas = crossingView.getCanvas();
         roadDrawer = new RoadDrawer(crossingView);
     }
 
     public void drawCrossing(Crossing crossing) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.LIGHTGREEN);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         int w = Math.max(crossing.getMaxNumberOfLinesFromOrientation(RoadOrientation.NORTH),
                 crossing.getMaxNumberOfLinesFromOrientation(RoadOrientation.SOUTH)) * DrawingConstants.LINE_WIDTH;

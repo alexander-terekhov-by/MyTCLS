@@ -65,4 +65,10 @@ public class Crossing {
         }
         return 0;
     }
+    public List<String> getRoadOrientations(){
+        List<String> list  = new ArrayList<String>();
+        for (Road road : roads)
+            list.add(road.getOrientation().toString());
+        return list;
+    }
 }

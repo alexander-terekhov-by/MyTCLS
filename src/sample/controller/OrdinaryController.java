@@ -5,6 +5,7 @@ import sample.model.Crossing;
 import sample.model.road.Line;
 import sample.model.road.Road;
 import sample.model.trafficLights.TrafficLight;
+import sample.view.drawers.CrossingDrawer;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,8 +16,8 @@ public class OrdinaryController extends CrossingController {
     private GroupOfNonconflictedLights secondGroupOfLights;
 
 
-    public OrdinaryController(Crossing controlledCrossing) {
-        super(controlledCrossing);
+    public OrdinaryController(Crossing controlledCrossing, CrossingDrawer drawer) {
+        super(controlledCrossing, drawer);
         firstGroupOfLights = new GroupOfNonconflictedLights();
         secondGroupOfLights = new GroupOfNonconflictedLights();
 
