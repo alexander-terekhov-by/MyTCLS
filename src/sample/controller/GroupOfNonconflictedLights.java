@@ -50,7 +50,6 @@ public class GroupOfNonconflictedLights {
         for (TrafficLight light : groupOfLights) {
             light.getDetector().skipUnit();
         }
-
     }
 
     @Override
