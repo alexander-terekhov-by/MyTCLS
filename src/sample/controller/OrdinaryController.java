@@ -73,13 +73,13 @@ public class OrdinaryController extends CrossingController {
 
     private class LightController extends TimerTask {
         private int seconds = 0;
-        private int secondsForFirstGroup;
+        private  int secondsForFirstGroup;
 
         public void run() {
+            setMiddle();
             seconds++;
             if (seconds > sessionTime) {
                 seconds = 0;
-                setMiddle();
             }
 
             Platform.runLater(new Runnable() {
@@ -98,11 +98,11 @@ public class OrdinaryController extends CrossingController {
         }
 
         private void skipCars() {
-            if (seconds < secondsForFirstGroup) {
-                secondGroupOfLights.skipCar();
-            }
-            if (seconds > secondsForFirstGroup && seconds < sessionTime) {
+            if (seconds < secondsForFirstGroup + 1 && seconds > 1) {
                 firstGroupOfLights.skipCar();
+            }
+            if (seconds > secondsForFirstGroup + 1 && seconds <= sessionTime) {
+                secondGroupOfLights.skipCar();
             }
         }
 
@@ -113,7 +113,7 @@ public class OrdinaryController extends CrossingController {
             } else if (seconds == 2) {
                 firstGroupOfLights.lightGreen();
                 secondGroupOfLights.lightRed();
-            } else if (seconds == (secondsForFirstGroup)) {
+            } else if (seconds == secondsForFirstGroup) {
                 firstGroupOfLights.lightYellow();
                 secondGroupOfLights.lightYellowAndRed();
             } else if (seconds == (secondsForFirstGroup + 1)) {

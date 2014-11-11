@@ -26,7 +26,6 @@ public class GroupOfNonconflictedLights {
         }
     }
 
-
     public void lightRed() {
 
         for (TrafficLight light : groupOfLights) {

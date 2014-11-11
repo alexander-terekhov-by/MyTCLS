@@ -30,7 +30,7 @@ public class TrafficLight {
     }
 
     public void lightGreen() {
-        detector.skipUnit();
+        //detector.skipUnit();
         for (LightView view : views)
             view.lightGreen();
     }

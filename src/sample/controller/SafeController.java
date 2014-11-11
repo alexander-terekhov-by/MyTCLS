@@ -77,14 +77,6 @@ public class SafeController extends CrossingController {
             secondsForFirstGroup = SafeController.this.getMiddleTime();
         }
 
-        /*private void skipCars() {
-            if (seconds < secondsForFirstGroup) {
-                secondGroupOfLights.skipCar();
-            }
-            if (seconds > secondsForFirstGroup && seconds < sessionTime) {
-                firstGroupOfLights.skipCar();
-            }
-        }*/
 
         private void lightGroupOfLights() {
             if (seconds == 1) {

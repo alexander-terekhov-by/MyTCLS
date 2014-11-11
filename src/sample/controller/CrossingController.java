@@ -69,16 +69,16 @@ public abstract class CrossingController {
             orientation = road.getOrientation();
             for (Line line : road.getLines()) {
                 if (orientation == RoadOrientation.NORTH || orientation == RoadOrientation.SOUTH) {
-                    maxCountCarsOfVerticalRoads = Math.max(maxCountCarsOfVerticalRoads, line.getCarCount());
-                    System.out.println("First" + maxCountCarsOfVerticalRoads);
+                    maxCountCarsOfVerticalRoads  += line.getCarCount();//Math.max(maxCountCarsOfVerticalRoads, line.getCarCount());
+                    System.out.println(road + "First " + line.getCarCount());
                 }
                 if (orientation == RoadOrientation.WEST || orientation == RoadOrientation.EAST){
-                    maxCountCarsOfHorizontalRoads = Math.max(maxCountCarsOfHorizontalRoads, line.getCarCount());
-                    System.out.println("Second" + maxCountCarsOfVerticalRoads);
+                    maxCountCarsOfHorizontalRoads += line.getCarCount();//Math.max(maxCountCarsOfHorizontalRoads, line.getCarCount());
+                    System.out.println(road + "Second" + line.getCarCount());
                 }
             }
         }
-        researchMiddleTime(maxCountCarsOfVerticalRoads, maxCountCarsOfVerticalRoads);
+        researchMiddleTime(maxCountCarsOfVerticalRoads, maxCountCarsOfHorizontalRoads);
     }
 
     public abstract void makeGroupOfLights();
@@ -86,11 +86,13 @@ public abstract class CrossingController {
     //public abstract void setConflictedLightsToAllLights();
 
     public void researchMiddleTime(int firstGroupCount, int secondGroupCount){
-        System.out.println("MT: " +middleTime + "FirstMax: " + firstGroupCount + "SecondMax: " + secondGroupCount);
+        ///// int->Double!!!!!
+
         if (firstGroupCount != 0)
             middleTime = sessionTime -  sessionTime /(firstGroupCount + secondGroupCount) * secondGroupCount;
         else
             middleTime = 5;
+        System.out.println("MT: " + middleTime + "FirstMax: " + firstGroupCount + "SecondMax: " + secondGroupCount);
     }
 
     public void setSessionTime(int sessionTime) {
