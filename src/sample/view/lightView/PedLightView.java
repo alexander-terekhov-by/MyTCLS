@@ -21,12 +21,24 @@ public class PedLightView extends HBox implements LightView {
         this.getChildren().add(light);
     }
 
+    @Override
     public void lightGreen() {
         light.setImage(greenLight);
     }
 
+    @Override
     public void lightRed() {
         light.setImage(redLight);
+    }
+
+    @Override
+    public void lightYellow() {
+
+    }
+
+    @Override
+    public void lightYellowAndRed() {
+
     }
 
 

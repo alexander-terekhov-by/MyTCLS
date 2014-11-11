@@ -73,9 +73,9 @@ public class OrdinaryController extends CrossingController {
 
     public void playCrossing() {
         Timer timer = new Timer("LOL");
-        System.out.println(firstGroupOfLights.toString());
-        System.out.println(secondGroupOfLights.toString());
-        timer.schedule(new MyTimerTask(2), 1000, 1000);
+       // System.out.println(firstGroupOfLights.toString());
+        //System.out.println(secondGroupOfLights.toString());
+        timer.schedule(new MyTimerTask(5), 1000, 1000);
 
     }
 
@@ -90,22 +90,29 @@ public class OrdinaryController extends CrossingController {
 
         public void run() {
             seconds++;
-            //System.out.println(seconds);
-            if (seconds > 4)
+
+            if (seconds > sessionTime)
                 seconds = 0;
-            // this.cancel();
+
 
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
                     if (seconds == 1) {
+                        firstGroupOfLights.lightYellowAndRed();
+                        secondGroupOfLights.lightYellow();
+                        //System.out.println("1Green");
+                    } else if (seconds == 2) {
                         firstGroupOfLights.lightGreen();
                         secondGroupOfLights.lightRed();
-                        System.out.println("1Green");
-                    } else if (seconds == (secondsForFirstGroup + 1)) {
+                    }
+                    else if (seconds == (secondsForFirstGroup)) {
+                        firstGroupOfLights.lightYellow();
+                        secondGroupOfLights.lightYellowAndRed();
+                    }
+                    else if (seconds == (secondsForFirstGroup + 1)) {
                         firstGroupOfLights.lightRed();
                         secondGroupOfLights.lightGreen();
-                        System.out.println("2Green");
                     }
                 }
             });

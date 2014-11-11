@@ -39,6 +39,15 @@ public class TrafficLight {
             view.lightRed();
     }
 
+    public void lightYellow() {
+        for (LightView view : views)
+            view.lightYellow();
+    }
+    public void lightYellowAndRed() {
+        for (LightView view : views)
+            view.lightYellowAndRed();
+    }
+
     public void addConflictLight(TrafficLight light) {
         conflictLights.add(light);
     }
@@ -49,7 +58,7 @@ public class TrafficLight {
     }
 
     public void printConflicts() {
-        for (TrafficLight light : conflictLights)
-            System.out.println(light.toString());
+        //for (TrafficLight light : conflictLights)
+            //System.out.println(light.toString());
     }
 }

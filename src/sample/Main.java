@@ -77,15 +77,15 @@ public class Main extends Application {
 
     public void testDrawingCrossing() {
         Crossing crossing = new Crossing();
-        crossing.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.NORTH);
-        crossing.addNewRoad(RoadOrientation.WEST);
+        //crossing.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.NORTH);
+        //crossing.addNewRoad(RoadOrientation.WEST);
         //crossing.addNewRoad(RoadOrientation.EAST);
-        crossing.addNewCrosswalk(RoadOrientation.WEST);
-        crossing.addNewCrosswalk(RoadOrientation.NORTH);
-        crossing.addNewCrosswalk(RoadOrientation.SOUTH);
+        //crossing.addNewCrosswalk(RoadOrientation.WEST);
+        //crossing.addNewCrosswalk(RoadOrientation.NORTH);
+        //crossing.addNewCrosswalk(RoadOrientation.SOUTH);
         //crossing.addNewCrosswalk(RoadOrientation.EAST);
-        crossing.addNewLine(LineDirection.TO_LEFT, RoadOrientation.SOUTH);
-        crossing.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.WEST);
+        //crossing.addNewLine(LineDirection.TO_LEFT, RoadOrientation.SOUTH);
+        //crossing.addNewLine(LineDirection.TO_RIGHT, RoadOrientation.WEST);
         //crossing.addNewLine(LineDirection.TO_LEFT, RoadOrientation.EAST);
         CrossingDrawer drawer = new CrossingDrawer(crossingView);
         controller = new OrdinaryController(crossing, drawer);
@@ -98,7 +98,7 @@ public class Main extends Application {
             line.printConflict();*/
 
 
-        System.out.println(crossing);
+        //System.out.println(crossing);
     }
 
     private class ButtonBar extends VBox {

@@ -8,4 +8,8 @@ public interface LightView {
 
     public void lightRed();
 
+    public void lightYellow();
+
+    public void lightYellowAndRed();
+
 }

@@ -74,8 +74,6 @@ public class LineDrawer {
             case STRAIGHT:
                 gc.strokeText("STRAIGHT", x, y, DrawingConstants.LINE_WIDTH - 5);
                 break;
-
-
         }
     }
 

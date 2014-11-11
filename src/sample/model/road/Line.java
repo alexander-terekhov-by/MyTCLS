@@ -31,16 +31,13 @@ public class Line implements Comparable<Line> {
     public TrafficLight getTrafficLight() {
         return trafficLight;
     }
+    public int getCarCount() {
+        return trafficLight.getDetector().getUnitCounts();
+    }
 
     @Override
     public String toString() {
-        //printConflict();
         return "Line: Direction:" + direction + ", Road orientation:" + orientation;
-    }
-
-    public void printConflict() {
-        System.out.println(toString());
-        trafficLight.printConflicts();
     }
 
     public RoadOrientation getOrientation() {

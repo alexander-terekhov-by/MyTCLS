@@ -48,6 +48,14 @@ public class Crossing {
     public List<Road> getAllRoads() {
         return roads;
     }
+    public Road getRoadByOrientation(RoadOrientation orientation) {
+        List<Road> res = new ArrayList<Road>();
+        for(Road road: roads) {
+            if (road.getOrientation() == orientation)
+                return road;
+        }
+        return  null;
+    }
 
     @Override
     public String toString() {

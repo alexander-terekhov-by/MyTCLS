@@ -12,19 +12,19 @@ import sample.view.CrossingView;
  * Created by Александр on 07.11.2014.
  */
 public class CrossingDrawer {
-    Canvas canvas;
-    RoadDrawer roadDrawer;
+    CrossingView crossingView;
 
     public CrossingDrawer(CrossingView crossingView) {
-        canvas = crossingView.getCanvas();
-        roadDrawer = new RoadDrawer(crossingView);
+        this.crossingView = crossingView;
     }
 
     public void drawCrossing(Crossing crossing) {
+        crossingView.prepareToDrawCrossing();
+        Canvas canvas = crossingView.getCanvas();
+        RoadDrawer roadDrawer = new RoadDrawer(crossingView);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.LIGHTGREEN);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
         int w = Math.max(crossing.getMaxNumberOfLinesFromOrientation(RoadOrientation.NORTH),
                 crossing.getMaxNumberOfLinesFromOrientation(RoadOrientation.SOUTH)) * DrawingConstants.LINE_WIDTH;
         int h = Math.max(crossing.getMaxNumberOfLinesFromOrientation(RoadOrientation.WEST),
@@ -32,7 +32,6 @@ public class CrossingDrawer {
         gc.setFill(Color.GRAY);
         int firstPos = 190;
         gc.fillRect(firstPos, firstPos, w, h);
-        //System.out.println(w + "x"+ h);
         for (Road road : crossing.getAllRoads()) {
             if (road.getOrientation() == RoadOrientation.NORTH || road.getOrientation() == RoadOrientation.WEST) {
                 roadDrawer.drawRoad(road, firstPos, firstPos);

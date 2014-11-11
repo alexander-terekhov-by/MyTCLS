@@ -1,5 +1,7 @@
 package sample.view.dialogs;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +22,9 @@ import sample.model.enums.RoadOrientation;
  */
 public class AddLineDialog {
     Stage primaryStage;
+    RoadOrientation addOrientation;
+    LineDirection addDirection = LineDirection.STRAIGHT;
+
     public AddLineDialog(final CrossingController crossingController) {
         Stage primaryStage = new Stage();
         VBox root = new VBox();
@@ -29,7 +34,7 @@ public class AddLineDialog {
         primaryStage.setTitle("Add line");
         Button add = new Button("Add");
         ObservableList<String> orientation = FXCollections.observableArrayList(crossingController.getRoadOrientations());
-        ObservableList<String> direction = FXCollections.observableArrayList("To right","Straight","To left");
+        ObservableList<String> direction = FXCollections.observableArrayList("To right", "Straight", "To left");
         ChoiceBox chooseOrientation = new ChoiceBox<String>(orientation);
         ChoiceBox chooseDirection = new ChoiceBox<String>(direction);
         pane.getChildren().addAll(label, chooseOrientation, chooseDirection, add);
@@ -39,15 +44,50 @@ public class AddLineDialog {
         primaryStage.setScene(new Scene(root, 300, 150));
         primaryStage.show();
 
-        add.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                crossingController.addNewLine( LineDirection.STRAIGHT, RoadOrientation.EAST);
-                crossingController.drawCrossing();
-                AddLineDialog.this.primaryStage.close();
+
+        chooseOrientation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.equals("NORTH")) {
+                    addOrientation = RoadOrientation.NORTH;
+                }
+
+                if (newValue.equals("SOUTH")) {
+                    addOrientation = RoadOrientation.SOUTH;
+                }
+
+                if (newValue.equals("EAST")) {
+                    addOrientation = RoadOrientation.EAST;
+                }
+
+                if (newValue.equals("WEST")) {
+                    addOrientation = RoadOrientation.WEST;
+                }
             }
         });
 
+        chooseOrientation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue.equals("To right")) {
+                    addDirection = LineDirection.TO_RIGHT;
+                }
+
+                if (newValue.equals("Straight")) {
+                    addDirection = LineDirection.STRAIGHT;
+                }
+
+                if (newValue.equals("To left")) {
+                    addDirection = LineDirection.TO_LEFT;
+                }
+            }
+        });
+
+        add.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                crossingController.addNewLine(addDirection, addOrientation);
+                crossingController.drawCrossing();
+            }
+        });
 
     }
 }

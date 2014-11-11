@@ -22,16 +22,35 @@ public class GroupOfNonconflictedLights {
     public void lightGreen() {
 
         for (TrafficLight light : groupOfLights) {
-            System.out.println("Group green light");
             light.lightGreen();
         }
     }
 
+
     public void lightRed() {
+
         for (TrafficLight light : groupOfLights) {
-            System.out.println("Group red light");
             light.lightRed();
         }
+    }
+
+    public void lightYellow() {
+        for (TrafficLight light : groupOfLights) {
+              light.lightYellow();
+        }
+    }
+
+    public void lightYellowAndRed() {
+        for (TrafficLight light : groupOfLights) {
+            light.lightYellowAndRed();
+        }
+    }
+
+    public  void skipCar(){
+        for (TrafficLight light : groupOfLights) {
+            light.getDetector().skipUnit();
+        }
+
     }
 
     @Override

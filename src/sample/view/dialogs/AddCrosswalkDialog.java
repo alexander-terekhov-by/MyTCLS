@@ -1,5 +1,7 @@
 package sample.view.dialogs;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,8 +21,9 @@ import sample.model.enums.RoadOrientation;
  */
 public class AddCrosswalkDialog {
     Stage primaryStage;
+    RoadOrientation addOrientation;
     public AddCrosswalkDialog(final CrossingController crossingController) {
-        Stage primaryStage = new Stage();
+        primaryStage = new Stage();
         VBox root = new VBox();
         VBox pane = new VBox();
         Label label = new Label("Choose road orientation to add crosswalk:");
@@ -39,9 +42,37 @@ public class AddCrosswalkDialog {
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                crossingController.addNewCrosswalk(RoadOrientation.EAST);
+                crossingController.addNewCrosswalk(addOrientation);
                 crossingController.drawCrossing();
                 AddCrosswalkDialog.this.primaryStage.close();
+            }
+        });
+
+        chooseOrientation.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>()
+        {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+            {
+                if (newValue.equals("NORTH"))
+                {
+                    addOrientation = RoadOrientation.NORTH;
+                }
+
+                if (newValue.equals("SOUTH"))
+                {
+                    addOrientation = RoadOrientation.SOUTH;
+                }
+
+                if (newValue.equals("EAST"))
+                {
+                    addOrientation = RoadOrientation.EAST;
+                }
+
+                if (newValue.equals("WEST"))
+                {
+                    addOrientation = RoadOrientation.WEST;
+                }
+
+
             }
         });
 

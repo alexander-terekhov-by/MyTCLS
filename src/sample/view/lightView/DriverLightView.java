@@ -25,14 +25,22 @@ public class DriverLightView extends HBox implements LightView {
     }
 
     public void lightGreen() {
-        light.setImage(redAndYellowLight);
         //add countDownTimer or timer or sleep
         light.setImage(greenLight);
     }
 
     public void lightRed() {
-        light.setImage(yellowLight);
         //add countDownTimer or timer or sleep
         light.setImage(redLight);
+    }
+
+    @Override
+    public void lightYellow() {
+        light.setImage(yellowLight);
+    }
+
+    @Override
+    public void lightYellowAndRed() {
+        light.setImage(redAndYellowLight);
     }
 }

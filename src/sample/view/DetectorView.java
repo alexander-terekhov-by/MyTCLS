@@ -21,7 +21,7 @@ public class DetectorView extends VBox {
 
     public DetectorView(boolean horizontal, final Detector detector) {
         addCar = new Button("Add");
-        carCounter = new Label("20");
+        carCounter = new Label("0");
         carCounter.setTextFill(Color.WHITE);
         carCounter.setFont(new Font("Arial", 20));
         Pane box;

@@ -18,6 +18,11 @@ public class CrossingView extends Pane {
     public Canvas getCanvas() {
         return canvas;
     }
+    public void prepareToDrawCrossing(){
+        this.getChildren().removeAll(this.getChildren());
+        canvas = new Canvas(600, 600);
+        this.getChildren().add(canvas);
+    }
 
 }
 

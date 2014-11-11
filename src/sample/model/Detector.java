@@ -17,9 +17,11 @@ public class Detector {
         view.setText(Integer.toString(unitCounts));
     }
 
-    public void removeUnit() {
-        unitCounts--;
-        view.setText(Integer.toString(unitCounts));
+    public void skipUnit() {
+        if(unitCounts != 0) {
+            unitCounts--;
+            view.setText(Integer.toString(unitCounts));
+        }
     }
 
     public int getUnitCounts() {
