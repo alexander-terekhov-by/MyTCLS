@@ -10,23 +10,11 @@ public class SafeController extends CrossingController {
         super(controlledCrossing, drawer);
     }
 
-
-    public void makeQueue() {
-
-    }
-
-    @Override
-    public void setConflictedLightsToAllLights() {
-
-    }
-
     public void playCrossing() {
 
     }
 
-    public void useDetector() {
 
-    }
 
     @Override
     public void makeGroupOfLights() {

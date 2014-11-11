@@ -20,12 +20,10 @@ public class OrdinaryController extends CrossingController {
         super(controlledCrossing, drawer);
         firstGroupOfLights = new GroupOfNonconflictedLights();
         secondGroupOfLights = new GroupOfNonconflictedLights();
-
     }
 
-
     @Override
-    public void setConflictedLightsToAllLights() {
+    /*public void setConflictedLightsToAllLights() {
         //System.out.println(controlledCrossing.toString());
         for (Road oneRoad : controlledCrossing.getAllRoads()) {
             for (Road anotherRoad : controlledCrossing.getAllRoads()) {
@@ -43,7 +41,7 @@ public class OrdinaryController extends CrossingController {
                 }
             }
         }
-    }
+    }*/
 
     public void makeGroupOfLights() {
         Road basicRoad = controlledCrossing.getAllRoads().get(0);
@@ -67,55 +65,61 @@ public class OrdinaryController extends CrossingController {
                 }
             }
         }
-
     }
-
 
     public void playCrossing() {
-        Timer timer = new Timer("LOL");
-       // System.out.println(firstGroupOfLights.toString());
-        //System.out.println(secondGroupOfLights.toString());
-        timer.schedule(new MyTimerTask(5), 1000, 1000);
-
+               timer.schedule(new LightController(), 1000, 1000);
     }
 
-    private class MyTimerTask extends TimerTask {
+    private class LightController extends TimerTask {
         private int seconds = 0;
         private int secondsForFirstGroup;
 
-        private MyTimerTask(int secondsForFirstGroup) {
-            this.secondsForFirstGroup = secondsForFirstGroup;
-        }
-
-
         public void run() {
             seconds++;
-
-            if (seconds > sessionTime)
+            if (seconds > sessionTime) {
                 seconds = 0;
-
+                setMiddle();
+            }
 
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    if (seconds == 1) {
-                        firstGroupOfLights.lightYellowAndRed();
-                        secondGroupOfLights.lightYellow();
-                        //System.out.println("1Green");
-                    } else if (seconds == 2) {
-                        firstGroupOfLights.lightGreen();
-                        secondGroupOfLights.lightRed();
-                    }
-                    else if (seconds == (secondsForFirstGroup)) {
-                        firstGroupOfLights.lightYellow();
-                        secondGroupOfLights.lightYellowAndRed();
-                    }
-                    else if (seconds == (secondsForFirstGroup + 1)) {
-                        firstGroupOfLights.lightRed();
-                        secondGroupOfLights.lightGreen();
-                    }
+                    lightGroupOfLights();
+                    skipCars();
                 }
             });
+        }
+
+        private void setMiddle() {
+            OrdinaryController.this.checkDetector();
+            System.out.println(secondsForFirstGroup);
+            secondsForFirstGroup = OrdinaryController.this.getMiddleTime();
+        }
+
+        private void skipCars() {
+            if (seconds < secondsForFirstGroup) {
+                secondGroupOfLights.skipCar();
+            }
+            if (seconds > secondsForFirstGroup && seconds < sessionTime) {
+                firstGroupOfLights.skipCar();
+            }
+        }
+
+        private void lightGroupOfLights() {
+            if (seconds == 1) {
+                firstGroupOfLights.lightYellowAndRed();
+                secondGroupOfLights.lightYellow();
+            } else if (seconds == 2) {
+                firstGroupOfLights.lightGreen();
+                secondGroupOfLights.lightRed();
+            } else if (seconds == (secondsForFirstGroup)) {
+                firstGroupOfLights.lightYellow();
+                secondGroupOfLights.lightYellowAndRed();
+            } else if (seconds == (secondsForFirstGroup + 1)) {
+                firstGroupOfLights.lightRed();
+                secondGroupOfLights.lightGreen();
+            }
         }
     }
 

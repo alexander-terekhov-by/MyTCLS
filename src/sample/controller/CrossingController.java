@@ -10,6 +10,7 @@ import sample.view.drawers.CrossingDrawer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
 
 public abstract class CrossingController {
 
@@ -17,11 +18,15 @@ public abstract class CrossingController {
     protected Crossing controlledCrossing;
     protected CrossingDrawer drawer;
     protected int sessionTime;
+    protected int middleTime;
+    Timer timer;
 
     public CrossingController(Crossing crossing, CrossingDrawer drawer) {
         controlledCrossing = crossing;
         this.drawer = drawer;
         sessionTime = 10;
+        middleTime = 5;
+        timer = new Timer("Session controller", true);
     }
 
     public abstract void playCrossing();
@@ -51,6 +56,10 @@ public abstract class CrossingController {
         return allOrientations;
     }
 
+    public  void stop(){
+        timer.cancel();
+    }
+
 
     public void checkDetector() {
         int maxCountCarsOfVerticalRoads = 0;
@@ -58,21 +67,31 @@ public abstract class CrossingController {
         RoadOrientation orientation = null;
         for (Road road : controlledCrossing.getAllRoads()) {
             orientation = road.getOrientation();
-
             for (Line line : road.getLines()) {
-                if (orientation == RoadOrientation.NORTH || orientation == RoadOrientation.SOUTH)
-                    maxCountCarsOfVerticalRoads = Math.max(maxCountCarsOfVerticalRoads,line.getCarCount());
-                else
-                    maxCountCarsOfHorizontalRoads = Math.max(maxCountCarsOfHorizontalRoads,line.getCarCount());
-
+                if (orientation == RoadOrientation.NORTH || orientation == RoadOrientation.SOUTH) {
+                    maxCountCarsOfVerticalRoads = Math.max(maxCountCarsOfVerticalRoads, line.getCarCount());
+                    System.out.println("First" + maxCountCarsOfVerticalRoads);
+                }
+                if (orientation == RoadOrientation.WEST || orientation == RoadOrientation.EAST){
+                    maxCountCarsOfHorizontalRoads = Math.max(maxCountCarsOfHorizontalRoads, line.getCarCount());
+                    System.out.println("Second" + maxCountCarsOfVerticalRoads);
+                }
             }
         }
-
+        researchMiddleTime(maxCountCarsOfVerticalRoads, maxCountCarsOfVerticalRoads);
     }
 
     public abstract void makeGroupOfLights();
 
-    public abstract void setConflictedLightsToAllLights();
+    //public abstract void setConflictedLightsToAllLights();
+
+    public void researchMiddleTime(int firstGroupCount, int secondGroupCount){
+        System.out.println("MT: " +middleTime + "FirstMax: " + firstGroupCount + "SecondMax: " + secondGroupCount);
+        if (firstGroupCount != 0)
+            middleTime = sessionTime -  sessionTime /(firstGroupCount + secondGroupCount) * secondGroupCount;
+        else
+            middleTime = 5;
+    }
 
     public void setSessionTime(int sessionTime) {
         this.sessionTime = sessionTime;
@@ -80,5 +99,9 @@ public abstract class CrossingController {
 
     public void drawCrossing() {
         drawer.drawCrossing(controlledCrossing);
+    }
+
+    public int getMiddleTime() {
+        return middleTime;
     }
 }
