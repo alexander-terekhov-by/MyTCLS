@@ -4,12 +4,13 @@ import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
 import sample.model.road.Road;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Crossing {
-    //private List<Crossing> neighbourCrossings;
+public class Crossing  {
+    private List<Crossing> neighbourCrossings;
     private List<Road> roads;
 
     public Crossing() {

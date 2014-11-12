@@ -93,12 +93,12 @@ public class OrdinaryController extends CrossingController {
 
         private void setMiddle() {
             OrdinaryController.this.checkDetector();
-            System.out.println(secondsForFirstGroup);
+            //System.out.println(secondsForFirstGroup);
             secondsForFirstGroup = OrdinaryController.this.getMiddleTime();
         }
 
         private void skipCars() {
-            if (seconds < secondsForFirstGroup + 1 && seconds > 1) {
+            if (seconds < secondsForFirstGroup  && seconds > 1) {
                 firstGroupOfLights.skipCar();
             }
             if (seconds > secondsForFirstGroup + 1 && seconds <= sessionTime) {

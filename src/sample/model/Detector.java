@@ -10,6 +10,7 @@ public class Detector {
 
     public void setView(DetectorView view) {
         this.view = view;
+        view.setText(Integer.toString(unitCounts));
     }
 
     public void addUnit() {
@@ -22,6 +23,11 @@ public class Detector {
             unitCounts--;
             view.setText(Integer.toString(unitCounts));
         }
+    }
+
+    public void setUnitCounts(int unitCounts) {
+        this.unitCounts = unitCounts;
+
     }
 
     public int getUnitCounts() {
