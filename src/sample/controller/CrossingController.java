@@ -1,5 +1,6 @@
 package sample.controller;
 
+import sample.JSONFileWork;
 import sample.model.Crossing;
 import sample.model.enums.LineDirection;
 import sample.model.enums.RoadOrientation;
@@ -19,9 +20,11 @@ public abstract class CrossingController {
     protected CrossingDrawer drawer;
     protected int sessionTime;
     protected int middleTime;
-    Timer timer;
+    protected Timer timer;
+    protected JSONFileWork crossingFileIO;
 
     public CrossingController(Crossing crossing, CrossingDrawer drawer) {
+        crossingFileIO = new JSONFileWork();
         controlledCrossing = crossing;
         this.drawer = drawer;
         sessionTime = 10;
@@ -30,6 +33,10 @@ public abstract class CrossingController {
     }
 
     public abstract void playCrossing();
+
+    public  void stop(){
+        timer.cancel();
+    }
 
     public void addNewCrosswalk(RoadOrientation orientation) {
         controlledCrossing.addNewCrosswalk(orientation);
@@ -56,11 +63,6 @@ public abstract class CrossingController {
         return allOrientations;
     }
 
-    public  void stop(){
-        timer.cancel();
-    }
-
-
     public void checkDetector() {
         int maxCountCarsOfVerticalRoads = 0;
         int maxCountCarsOfHorizontalRoads = 0;
@@ -70,11 +72,11 @@ public abstract class CrossingController {
             for (Line line : road.getLines()) {
                 if (orientation == RoadOrientation.NORTH || orientation == RoadOrientation.SOUTH) {
                     maxCountCarsOfVerticalRoads  += line.getCarCount();//Math.max(maxCountCarsOfVerticalRoads, line.getCarCount());
-                    System.out.println(road + "First " + line.getCarCount());
+                    //System.out.println(road + "First " + line.getCarCount());
                 }
                 if (orientation == RoadOrientation.WEST || orientation == RoadOrientation.EAST){
                     maxCountCarsOfHorizontalRoads += line.getCarCount();//Math.max(maxCountCarsOfHorizontalRoads, line.getCarCount());
-                    System.out.println(road + "Second" + line.getCarCount());
+                    //System.out.println(road + "Second" + line.getCarCount());
                 }
             }
         }
@@ -83,15 +85,13 @@ public abstract class CrossingController {
 
     public abstract void makeGroupOfLights();
 
-    //public abstract void setConflictedLightsToAllLights();
-
     public void researchMiddleTime(int firstGroupCount, int secondGroupCount){
         ///// int->Double!!!!!
 
         if (firstGroupCount != 0)
-            middleTime = sessionTime -  sessionTime /(firstGroupCount + secondGroupCount) * secondGroupCount;
+            middleTime = (int)(((double)sessionTime) /(firstGroupCount + secondGroupCount) * firstGroupCount);
         else
-            middleTime = 5;
+            middleTime = 0;
         System.out.println("MT: " + middleTime + "FirstMax: " + firstGroupCount + "SecondMax: " + secondGroupCount);
     }
 
@@ -105,5 +105,9 @@ public abstract class CrossingController {
 
     public int getMiddleTime() {
         return middleTime;
+    }
+
+    public void saveCrossing(){
+        crossingFileIO.writeFile(controlledCrossing);
     }
 }

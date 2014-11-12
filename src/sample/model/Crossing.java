@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class Crossing {
-    private List<Crossing> neighbourCrossings;
+    //private List<Crossing> neighbourCrossings;
     private List<Road> roads;
 
     public Crossing() {

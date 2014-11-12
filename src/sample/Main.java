@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import sample.controller.CrossingController;
 import sample.controller.OrdinaryController;
 import sample.model.Crossing;
+import sample.model.enums.LineDirection;
+import sample.model.enums.RoadOrientation;
 import sample.view.CrossingView;
 import sample.view.dialogs.AddCrosswalkDialog;
 import sample.view.dialogs.AddLineDialog;
@@ -25,6 +27,7 @@ import java.util.List;
 public class Main extends Application {
     CrossingController controller;
     CrossingView crossingView;
+
 
 
     @Override
@@ -48,6 +51,12 @@ public class Main extends Application {
 
     public void testDrawingCrossing() {
         Crossing crossing = new Crossing();
+        crossing.addNewRoad(RoadOrientation.EAST);
+        //crossingFileIO.writeFile(crossing);
+        Crossing crossing1 = new Crossing();
+        crossing.addNewCrosswalk(RoadOrientation.NORTH);
+        crossing1.addNewLine(LineDirection.TO_LEFT, RoadOrientation.SOUTH);
+        //crossingFileIO.writeFile(crossing1);
         CrossingDrawer drawer = new CrossingDrawer(crossingView);
         controller = new OrdinaryController(crossing, drawer);
         controller.makeGroupOfLights();
@@ -60,11 +69,12 @@ public class Main extends Application {
             innerBox.setSpacing(5);
             Button playButton = new Button("Start");
             Button stop = new Button("Stop");
+            Button write = new Button("Save crossing");
             Button addRoad = new Button("Add road");
             Button addLine = new Button("Add line");
             Button addCrosswalk = new Button("Add crosswalk");
 
-            innerBox.getChildren().addAll(playButton, stop, addRoad, addLine, addCrosswalk);
+            innerBox.getChildren().addAll(playButton, stop, addRoad, addLine, addCrosswalk, write);
             setButtonSize(innerBox.getChildren());
             this.setMargin(innerBox, new Insets(10, 10, 10, 10));
             this.getChildren().add(innerBox);
@@ -104,6 +114,15 @@ public class Main extends Application {
 
                 }
             });
+            write.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    controller.saveCrossing();
+
+                }
+            });
+
+
         }
 
         private void setButtonSize(ObservableList<Node> buttons) {
